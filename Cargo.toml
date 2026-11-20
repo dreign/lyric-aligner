@@ -1,0 +1,32 @@
+[package]
+name = "lyric-aligner"
+version = "0.1.0"
+edition = "2021"
+description = "Offline MP3 lyric auto-aligner: TXT -> timed LRC via energy/VAD/Whisper ASR with manual timeline editing"
+
+[dependencies]
+# GUI
+eframe = "0.29"
+egui = "0.29"
+
+# 音频解码（统一 PCM 供对齐）与播放
+symphonia = { version = "0.5", features = ["mp3", "isomp4", "flac", "wav", "ogg"] }
+rodio = "0.20"
+
+# 能量/频谱特征
+rustfft = "6"
+
+# 文件对话框
+rfd = "0.15"
+
+# 中文编码探测（GBK/UTF-16 等）
+encoding_rs = "0.8"
+
+# 工程序列化
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

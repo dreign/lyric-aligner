@@ -1,0 +1,20 @@
+# Rust 构建产物
+/target/
+
+# 可执行文件
+*.exe
+
+# 外部模型与 whisper.cpp 工具链（体积大，需按 README 单独下载）
+/models/
+/tools/whisper/
+
+# 临时工作文件与录屏/对齐中间产物
+/.work/
+/recordings/
+
+# 演示音频素材（体积较大，可用 tools 脚本生成）
+*.wav
+
+# 系统文件
+.DS_Store
+Thumbs.db
