@@ -5,6 +5,7 @@ mod app;
 mod asr;
 mod audio;
 mod lyrics;
+mod ui_style;
 
 fn main() {
     app::run();
