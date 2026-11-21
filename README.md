@@ -88,11 +88,29 @@ src/
   app.rs      主界面、时间轴、手动编辑、撤销重做、导出
   align.rs    三级对齐引擎（能量谷 DP / VAD / ASR 映射）与单调修复
   asr.rs      whisper.cpp CLI 调用、token 时间戳解析、VAD 段检测
+  ui_style.rs UI 设计 token（语义化配色、单源圆角、面板样式）
   audio.rs    MP3/WAV 解码为 16 kHz 单声道 PCM、播放、波形
   lyrics.rs   歌词模型、编码探测、TXT/LRC 解析、LRC 导出、工程序列化
-test_assets/  演示用歌词与音频（生成脚本见 tools/snap.py 所在目录）
+test_assets/  演示用歌词与音频
 tools/        辅助脚本与 whisper.cpp 工具链（工具链需自行下载）
 ```
+
+## 默认测试素材
+
+自动化验证默认使用《声声慢》戏腔版（真实歌曲，含人声与戏腔段落，比合成演示曲更能检验对齐与波形效果）：
+
+- 音频：`F:/《声声慢》戏腔版.mp3`（约 2:24，38 行歌词）
+- 歌词：`F:/《声声慢》戏腔版.txt`（同名 UTF-8 纯文本，带 `[intro]/[verse]/[chorus]` 段落标签）
+
+一条命令验证（Git Bash）：
+
+```bash
+bash tools/verify.sh          # 启动加载默认素材并截图到 .work/verify.png
+bash tools/verify.sh align    # 快速对齐并导出 .work/verify-result.json
+```
+
+路径可用环境变量覆盖，便于换素材：`MP3_TEST_AUDIO`、`MP3_TEST_LYRICS`、`MP3_TEST_ENGINE`（FAST/VAD/ASR）、`MP3_TEST_EXE`。
+程序正常双击启动的行为不受影响（不会自动加载测试素材）；加载仅在设置了 `MP3_AUTO_LOAD` 环境变量时发生。
 
 ## 许可证
 
